@@ -1,0 +1,109 @@
+──────────────────────────────────────────────────────────────
+🧾 IMS INSTALLATION GUIDE
+──────────────────────────────────────────────────────────────
+
+📌 PROJECT STRUCTURE
+E:\Ims 2025
+├── backend
+├── frontend
+└── database (optional backup folder)
+
+──────────────────────────────────────────────────────────────
+⚙️ 1. SYSTEM REQUIREMENTS
+──────────────────────────────────────────────────────────────
+→ Node.js (v18 or higher)
+→ npm (comes with Node)
+→ MySQL Server (for database)
+→ Visual Studio Code or any code editor
+
+──────────────────────────────────────────────────────────────
+🧱 2. BACKEND SETUP
+──────────────────────────────────────────────────────────────
+1️⃣ Open terminal in backend folder:
+cd backend
+
+2️⃣ Install dependencies:
+npm install express body-parser cors mysql2 dotenv
+
+3️⃣ (Optional but recommended for auto restart)
+npm install --save-dev nodemon
+
+4️⃣ Add in package.json (if not present):
+"type": "module"
+
+5️⃣ Create a .env file in backend folder:
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=12345
+DB_NAME=ims_2025
+
+6️⃣ Run backend:
+node index.js
+OR
+npx nodemon index.js
+
+──────────────────────────────────────────────────────────────
+💻 3. FRONTEND SETUP
+──────────────────────────────────────────────────────────────
+1️⃣ Open terminal in frontend folder:
+cd frontend
+
+2️⃣ Install all dependencies:
+npm install
+
+(If it fails, install manually:)
+npm install react react-dom react-router-dom axios framer-motion html-to-image html5-qrcode lodash react-countup react-icons react-qr-barcode-scanner react-select recharts
+npm install -D tailwindcss postcss autoprefixer vite @vitejs/plugin-react
+
+3️⃣ Initialize Tailwind (if not done before):
+npx tailwindcss init -p
+
+4️⃣ Run development server:
+npm run dev
+
+5️⃣ For production build:
+npm run build
+(This will create the “dist” folder)
+
+──────────────────────────────────────────────────────────────
+🔗 4. CONNECT FRONTEND + BACKEND
+──────────────────────────────────────────────────────────────
+✔ Make sure backend is running on port 5000
+✔ In backend/index.js, add this near the end:
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use((req, res) => {
+res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+});
+
+✔ Now you can open:
+[http://localhost:5000](http://localhost:5000)
+
+(Backend will serve both APIs + frontend build)
+
+──────────────────────────────────────────────────────────────
+✅ 5. COMMON TROUBLESHOOTING
+──────────────────────────────────────────────────────────────
+❗ “Missing parameter name at index *”
+→ Replace `app.get('*', ...)` with fallback `app.use((req,res)=>{...})`
+
+❗ “Cannot find module”
+→ Run `npm install` again
+
+❗ “CORS error”
+→ Keep `app.use(cors())` before all routes
+
+❗ Database connection issue
+→ Verify .env credentials and DB service is running
+
+──────────────────────────────────────────────────────────────
+🎯 DONE!
+──────────────────────────────────────────────────────────────
+→ To run only backend (serving frontend build too):
+cd backend
+node index.js
+
+→ Access IMS dashboard:
+[http://localhost:5000/admin-login](http://localhost:5000/admin-login)
+
+──────────────────────────────────────────────────────────────────────────── E ───────────────────────────────────────────────────────────────────────────────
