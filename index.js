@@ -39,13 +39,13 @@ app.use("/api/assignments", employeeAssignmentsRouter);
 app.use("/api/scan", scanRouter);
 
 // ✅ Serve React frontend build (IMPORTANT: note the "../")
-app.use(express.static(path.join(__dirname, "../frontend/dist"))); 
+// app.use(express.static(path.join(__dirname, "../frontend/dist"))); 
 
 // ✅ Fallback route for React Router
-app.use((req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+// app.use((req, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 
-});
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
