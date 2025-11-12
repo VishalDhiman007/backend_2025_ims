@@ -38,6 +38,11 @@ app.use("/api/zoho", zohoRoutes);
 app.use("/api/assignments", employeeAssignmentsRouter);
 app.use("/api/scan", scanRouter);
 
+// Test route
+app.get("/api/test", (req, res) => {
+  res.status(200).json({ message: "Test route working" });
+});
+
 // Health check endpoint
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok", message: "Server is running" });
