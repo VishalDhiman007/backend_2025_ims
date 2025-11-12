@@ -38,6 +38,11 @@ app.use("/api/zoho", zohoRoutes);
 app.use("/api/assignments", employeeAssignmentsRouter);
 app.use("/api/scan", scanRouter);
 
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Server is running" });
+});
+
 // ✅ Serve React frontend build (IMPORTANT: note the "../")
 // app.use(express.static(path.join(__dirname, "../frontend/dist"))); 
 
