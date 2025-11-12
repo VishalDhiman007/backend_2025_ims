@@ -42,6 +42,16 @@ app.use("/api/scan", scanRouter);
 app.get("/api/test", (req, res) => {
   res.status(200).json({ message: "Test route working" });
 });
+// DB connection check endpoint
+app.get("/api/dbcheck", (req, res) => {
+  db.query("SELECT NOW() AS now", (err, result) => {
+    if (err) {
+      console.error("DB connection failed:", err);
+      return res.status(500).json({ connected: false, error: err });
+    }
+    res.json({ connected: true, now: result[0].now });
+  });
+});
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
