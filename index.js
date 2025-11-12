@@ -4,7 +4,9 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import "./config/db.js";
+// import "./config/db.js";
+import db from "./config/db.js";
+
 import authRoutes from "./routes/authRoutes.js";
 import productsRoutes from "./routes/products.js";
 import valuationRoutes from "./routes/valuation.js";
